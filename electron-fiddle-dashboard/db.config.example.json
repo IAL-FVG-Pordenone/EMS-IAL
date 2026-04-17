@@ -1,0 +1,13 @@
+{
+  "server": "localhost",
+  "port": 1433,
+  "database": "EMS-IAL",
+  "user": "sa",
+  "password": "Password123",
+  "instanceName": "",
+  "encrypt": false,
+  "trustServerCertificate": true,
+  "demoMode": true,
+  "schoolName": "Istituto Tecnico - Monitoraggio Energetico",
+  "settingsRequireAuth": false
+}

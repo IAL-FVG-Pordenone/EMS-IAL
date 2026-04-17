@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monitoraggio energetico scolastico</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+      <defs>
+        <symbol id="icon-bolt" viewBox="0 0 24 24">
+          <path d="M13 2 5 14h5l-1 8 8-12h-5l1-8Z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-menu" viewBox="0 0 24 24">
+          <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-dashboard" viewBox="0 0 24 24">
+          <path d="M4 4h7v7H4zM13 4h7v4h-7zM13 10h7v10h-7zM4 13h7v7H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-lab" viewBox="0 0 24 24">
+          <path d="M10 3v4l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 16l-5-9V3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M8 11h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-bell" viewBox="0 0 24 24">
+          <path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7 2.5 7h-17S6 15 6 9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+          <path d="M10 19a2 2 0 0 0 4 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-history" viewBox="0 0 24 24">
+          <path d="M4 12a8 8 0 1 0 2.3-5.7L4 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M12 8v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24">
+          <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path d="M19.4 15a1 1 0 0 0 .2 1.1l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1 1 0 0 0-1.1-.2 1 1 0 0 0-.6.9V20a2 2 0 1 1-4 0v-.2a1 1 0 0 0-.6-.9 1 1 0 0 0-1.1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1 1 0 0 0 .2-1.1 1 1 0 0 0-.9-.6H4a2 2 0 1 1 0-4h.2a1 1 0 0 0 .9-.6 1 1 0 0 0-.2-1.1l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1 1 0 0 0 1.1.2 1 1 0 0 0 .6-.9V4a2 2 0 1 1 4 0v.2a1 1 0 0 0 .6.9 1 1 0 0 0 1.1-.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1 1 0 0 0-.2 1.1 1 1 0 0 0 .9.6H20a2 2 0 1 1 0 4h-.2a1 1 0 0 0-.9.6Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-power" viewBox="0 0 24 24">
+          <path d="M12 3v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <path d="M7.8 6.8a8 8 0 1 0 8.4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path d="m8 5 11 7-11 7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-eye" viewBox="0 0 24 24">
+          <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+          <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8" />
+        </symbol>
+        <symbol id="icon-server" viewBox="0 0 24 24">
+          <rect x="4" y="4" width="16" height="6" rx="2" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <rect x="4" y="14" width="16" height="6" rx="2" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path d="M8 7h.01M8 17h.01" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-database" viewBox="0 0 24 24">
+          <path d="M12 4c4.4 0 8 1.3 8 3s-3.6 3-8 3-8-1.3-8-3 3.6-3 8-3Z" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path d="M4 7v5c0 1.7 3.6 3 8 3s8-1.3 8-3V7" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path d="M4 12v5c0 1.7 3.6 3 8 3s8-1.3 8-3v-5" fill="none" stroke="currentColor" stroke-width="1.8" />
+        </symbol>
+        <symbol id="icon-wave" viewBox="0 0 24 24">
+          <path d="M3 13c2 0 2-4 4-4s2 4 4 4 2-4 4-4 2 4 4 4 2-4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+          <path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-refresh" viewBox="0 0 24 24">
+          <path d="M21 12a9 9 0 1 1-2.64-6.36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M21 3v6h-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-filter" viewBox="0 0 24 24">
+          <path d="M4 6h16M7 12h10M10 18h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-clock" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path d="M12 8v4l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-x" viewBox="0 0 24 24">
+          <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </symbol>
+        <symbol id="icon-chart" viewBox="0 0 24 24">
+          <path d="M4 18V6M4 18h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          <path d="m7 14 4-5 4 3 4-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+          <path d="M12 3c2.8 2 5.7 3 8 3v6c0 5-3.4 8.9-8 10-4.6-1.1-8-5-8-10V6c2.3 0 5.2-1 8-3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+          <path d="m9.5 12 1.8 1.8 3.6-3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol id="icon-sliders" viewBox="0 0 24 24">
+          <path d="M4 6h6M14 6h6M10 6a2 2 0 1 0 4 0 2 2 0 0 0-4 0ZM4 12h10M18 12h2M14 12a2 2 0 1 0 4 0 2 2 0 0 0-4 0ZM4 18h2M10 18h10M6 18a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="app" id="appRoot">
+      <aside class="sidebar glass-panel" id="sidebar">
+        <div class="sidebar__brand">
+          <div class="brand-icon-wrap">
+            <svg class="brand-icon"><use href="#icon-bolt"></use></svg>
+          </div>
+          <div class="brand-copy">
+            <strong>Energy School</strong>
+            <span>Dashboard monitoraggio</span>
+          </div>
+        </div>
+
+        <nav class="sidebar__nav" id="navList">
+          <button class="nav-btn nav-btn--active" data-page="dashboard" type="button">
+            <svg><use href="#icon-dashboard"></use></svg>
+            <span>Dashboard</span>
+          </button>
+          <button class="nav-btn" data-page="laboratori" type="button">
+            <svg><use href="#icon-lab"></use></svg>
+            <span>Laboratori</span>
+          </button>
+          <button class="nav-btn" data-page="allarmi" type="button">
+            <svg><use href="#icon-bell"></use></svg>
+            <span>Allarmi</span>
+          </button>
+          <button class="nav-btn" data-page="storico" type="button">
+            <svg><use href="#icon-history"></use></svg>
+            <span>Storico</span>
+          </button>
+          <button class="nav-btn" data-page="impostazioni" type="button">
+            <svg><use href="#icon-settings"></use></svg>
+            <span>Impostazioni</span>
+          </button>
+        </nav>
+
+        <div class="sidebar__status panel panel--soft">
+          <div class="mini-title">Stato sistema</div>
+          <div class="sidebar__status-head">
+            <strong id="sidebarStatusTitle">Monitoraggio realtime</strong>
+            <span id="sidebarStatusBadge" class="chip chip--ok">Attiva</span>
+          </div>
+          <div class="status-rows">
+            <div class="status-row">
+              <span>Servizio dati</span>
+              <span id="sidebarRealtimeState" class="micro micro--ok">Attivo</span>
+            </div>
+            <div class="status-row">
+              <span>Database</span>
+              <span id="sidebarDbState" class="micro micro--info">Connesso</span>
+            </div>
+            <div class="status-row">
+              <span>Ultimo sync</span>
+              <span id="sidebarLastSync" class="micro micro--info">--:--:--</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="content" id="contentRoot">
+        <header class="topbar glass-panel">
+          <div class="topbar__left">
+            <button id="sidebarToggle" class="icon-btn" type="button" aria-label="Comprimi barra laterale">
+              <svg><use href="#icon-menu"></use></svg>
+            </button>
+            <div>
+              <p class="eyebrow">Monitoraggio intelligente del consumo energetico</p>
+              <h1 id="pageTitle">Dashboard generale</h1>
+              <p class="page-subtitle" id="pageSubtitle">Vista realtime dei laboratori e dello stato dell'impianto.</p>
+            </div>
+          </div>
+          <div class="topbar__right">
+            <div class="live-box panel panel--soft">
+              <span class="live-dot"></span>
+              <div>
+                <strong>Realtime</strong>
+                <small id="lastRefresh">--:--:--</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section class="page page--active" data-page="dashboard">
+          <div class="metrics-grid" id="metricsGrid"></div>
+
+          <div class="panel page-panel">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Laboratori</p>
+                <h2>Controllo rapido aule</h2>
+              </div>
+              <button class="ghost-btn" type="button" data-nav-page="laboratori">
+                <svg><use href="#icon-eye"></use></svg>
+                <span>Apri pagina laboratori</span>
+              </button>
+            </div>
+            <div class="lab-strip" id="dashboardLabStrip"></div>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="dashboard-grid__side">
+              <div class="panel status-panel">
+                <div class="section-head compact">
+                  <div>
+                    <p class="eyebrow">Stato sistema</p>
+                    <h2>Monitoraggio realtime</h2>
+                  </div>
+                  <span id="systemStateBadge" class="chip chip--ok">Attiva</span>
+                </div>
+                <div class="system-grid">
+                  <div class="system-card">
+                    <div class="system-card__icon"><svg><use href="#icon-server"></use></svg></div>
+                    <div>
+                      <span>Servizio dati</span>
+                      <strong id="systemRealtimeText">Aggiornamento realtime attivo</strong>
+                    </div>
+                  </div>
+                  <div class="system-card">
+                    <div class="system-card__icon"><svg><use href="#icon-database"></use></svg></div>
+                    <div>
+                      <span>Database</span>
+                      <strong id="systemDbText">Scrittura buffer corretta</strong>
+                    </div>
+                  </div>
+                  <div class="system-card">
+                    <div class="system-card__icon"><svg><use href="#icon-wave"></use></svg></div>
+                    <div>
+                      <span>Stato monitoraggio</span>
+                      <strong id="systemSignalText">Monitoraggio attivo</strong>
+                    </div>
+                  </div>
+                  <div class="system-card">
+                    <div class="system-card__icon"><svg><use href="#icon-clock"></use></svg></div>
+                    <div>
+                      <span>Ultimo aggiornamento</span>
+                      <strong id="systemSampleText">--:--:--</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel alarm-preview-panel">
+                <div class="section-head compact">
+                  <div>
+                    <p class="eyebrow">Allarmi live</p>
+                    <h2>Aperti adesso</h2>
+                  </div>
+                  <button class="ghost-btn ghost-btn--small" type="button" data-nav-page="allarmi">
+                    <svg><use href="#icon-bell"></use></svg>
+                    <span>Gestisci</span>
+                  </button>
+                </div>
+                <div id="dashboardAlarmPreview" class="alarm-list"></div>
+              </div>
+            </div>
+
+            <div class="panel chart-panel">
+              <div class="section-head compact">
+                <div>
+                  <p class="eyebrow">Grafico realtime</p>
+                  <h2>Consumi per laboratorio</h2>
+                </div>
+                <div class="segmented" id="timeFilterGroup">
+                  <button class="segmented__btn segmented__btn--active" data-range="hours" type="button">Ore</button>
+                  <button class="segmented__btn" data-range="days" type="button">Giorni</button>
+                  <button class="segmented__btn" data-range="months" type="button">Mesi</button>
+                  <button class="segmented__btn" data-range="quarter" type="button">3 mesi</button>
+                  <button class="segmented__btn" data-range="years" type="button">Anni</button>
+                </div>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="energyChart" width="980" height="430"></canvas>
+                <div id="chartTooltip" class="chart-tooltip" hidden></div>
+              </div>
+              <div class="chart-legend" id="chartLegend"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" data-page="laboratori">
+          <div class="page-heading panel">
+            <div>
+              <p class="eyebrow">Pagina laboratori</p>
+              <h2>Gestione completa delle aule</h2>
+            </div>
+            <div class="page-heading__actions">
+              <button class="ghost-btn" type="button" data-nav-page="dashboard">
+                <svg><use href="#icon-chart"></use></svg>
+                <span>Torna alla dashboard</span>
+              </button>
+            </div>
+          </div>
+          <div class="lab-grid" id="laboratoriGrid"></div>
+        </section>
+
+        <section class="page" data-page="allarmi">
+          <div class="page-heading panel">
+            <div>
+              <p class="eyebrow">Pagina allarmi</p>
+              <h2>Gestione e presa in carico</h2>
+            </div>
+            <div class="page-heading__actions">
+              <button id="simulateAlarmBtn" class="ghost-btn" type="button">
+                <svg><use href="#icon-refresh"></use></svg>
+                <span>Simula nuovo allarme</span>
+              </button>
+            </div>
+          </div>
+          <div class="alarm-management-grid" id="alarmManagementGrid"></div>
+        </section>
+
+        <section class="page" data-page="storico">
+          <div class="page-heading panel">
+            <div>
+              <p class="eyebrow">Pagina storico</p>
+              <h2>Eventi, spegnimenti e allarmi registrati</h2>
+            </div>
+            <div class="segmented" id="historyFilterGroup">
+              <button class="segmented__btn segmented__btn--active" data-history-filter="all" type="button">Tutti</button>
+              <button class="segmented__btn" data-history-filter="shutdown" type="button">Spegnimenti</button>
+              <button class="segmented__btn" data-history-filter="start" type="button">Accensioni</button>
+              <button class="segmented__btn" data-history-filter="alarm" type="button">Allarmi</button>
+              <button class="segmented__btn" data-history-filter="system" type="button">Sistema</button>
+            </div>
+          </div>
+          <div class="panel table-panel">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Data / Ora</th>
+                    <th>Tipo</th>
+                    <th>Laboratorio</th>
+                    <th>Dettaglio</th>
+                    <th>Operatore</th>
+                  </tr>
+                </thead>
+                <tbody id="historyTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" data-page="impostazioni">
+          <div class="page-heading panel">
+            <div>
+              <p class="eyebrow">Pagina impostazioni</p>
+              <h2>Configurazione dashboard e database</h2>
+            </div>
+            <div class="page-heading__actions">
+              <button id="saveSettingsBtn" class="ghost-btn" type="button">
+                <svg><use href="#icon-check"></use></svg>
+                <span>Salva impostazioni</span>
+              </button>
+            </div>
+          </div>
+          <div class="settings-grid">
+            <div class="panel settings-panel">
+              <div class="settings-head">
+                <div>
+                  <p class="eyebrow">Sistema</p>
+                  <h3>Acquisizione e visualizzazione</h3>
+                </div>
+              </div>
+              <div class="setting-item">
+                <div>
+                  <strong>Aggiornamento realtime attivo</strong>
+                  <span>Blocca o riattiva il flusso realtime simulato.</span>
+                </div>
+                <button class="switch" type="button" data-setting="realtimeActive" aria-pressed="true">
+                  <span class="switch__thumb"></span>
+                </button>
+              </div>
+              <div class="setting-item">
+                <div>
+                  <strong>Glow UI avanzato</strong>
+                  <span>Attiva bagliori e profondità della dashboard.</span>
+                </div>
+                <button class="switch" type="button" data-setting="glowEffects" aria-pressed="true">
+                  <span class="switch__thumb"></span>
+                </button>
+              </div>
+              <div class="setting-item">
+                <div>
+                  <strong>Suono allarmi</strong>
+                  <span>Simulazione del buzzer di allarme a livello software.</span>
+                </div>
+                <button class="switch" type="button" data-setting="alarmSound" aria-pressed="false">
+                  <span class="switch__thumb"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="panel settings-panel settings-panel--db">
+              <div class="settings-head">
+                <div>
+                  <p class="eyebrow">Database SQL Server</p>
+                  <h3>Connessione EMS</h3>
+                </div>
+                <div class="settings-head__chips">
+                  <span id="dbStatusLabel" class="chip chip--info">Demo</span>
+                  <span id="dbDriverLabel" class="chip chip--danger">mssql assente</span>
+                </div>
+              </div>
+
+              <div class="field-grid field-grid--db">
+                <label class="field">
+                  <span>Server</span>
+                  <input id="dbServer" type="text" autocomplete="off" placeholder="localhost" />
+                </label>
+                <label class="field">
+                  <span>Porta</span>
+                  <input id="dbPort" type="number" autocomplete="off" placeholder="1433" />
+                </label>
+                <label class="field">
+                  <span>Database</span>
+                  <input id="dbName" type="text" autocomplete="off" placeholder="EMS-IAL" />
+                </label>
+                <label class="field">
+                  <span>Istanza</span>
+                  <input id="dbInstance" type="text" autocomplete="off" placeholder="SQLEXPRESS" />
+                </label>
+                <label class="field">
+                  <span>Utente SQL</span>
+                  <input id="dbUser" type="text" autocomplete="off" placeholder="sa" />
+                </label>
+                <label class="field">
+                  <span>Password SQL</span>
+                  <input id="dbPassword" type="password" autocomplete="off" placeholder="Password" />
+                </label>
+                <label class="field field--full">
+                  <span>Nome istituto</span>
+                  <input id="dbSchoolName" type="text" autocomplete="off" placeholder="Istituto Tecnico - Monitoraggio Energetico" />
+                </label>
+              </div>
+
+              <div class="settings-checkboxes">
+                <label class="checkbox-row">
+                  <input id="dbDemoMode" type="checkbox" />
+                  <span>Usa modalità demo se il database non è disponibile</span>
+                </label>
+                <label class="checkbox-row">
+                  <input id="dbEncrypt" type="checkbox" />
+                  <span>Abilita connessione cifrata</span>
+                </label>
+                <label class="checkbox-row">
+                  <input id="dbTrust" type="checkbox" checked />
+                  <span>Trust server certificate</span>
+                </label>
+                <label class="checkbox-row">
+                  <input id="settingsRequireAuth" type="checkbox" />
+                  <span>Richiedi credenziali database per aprire le impostazioni</span>
+                </label>
+              </div>
+
+              <div class="action-stack action-stack--horizontal">
+                <button id="testDbConnectionBtn" class="ghost-btn" type="button">
+                  <svg><use href="#icon-database"></use></svg>
+                  <span>Test connessione</span>
+                </button>
+                <button class="ghost-btn" type="button" data-nav-page="storico">
+                  <svg><use href="#icon-history"></use></svg>
+                  <span>Apri pagina storico</span>
+                </button>
+                <button class="ghost-btn" type="button" data-nav-page="allarmi">
+                  <svg><use href="#icon-bell"></use></svg>
+                  <span>Apri pagina allarmi</span>
+                </button>
+              </div>
+
+              <div class="settings-note settings-note--status">
+                <strong id="dbStatusText">La dashboard usa dati demo locali finché la modalità demo resta attiva.</strong>
+                <span id="dbLastError">Nessun errore recente.</span>
+              </div>
+            </div>
+
+
+            <div class="panel settings-panel">
+              <div class="settings-head">
+                <div>
+                  <p class="eyebrow">Manutenzione</p>
+                  <h3>Azioni rapide</h3>
+                </div>
+              </div>
+              <div class="action-stack">
+                <button id="resetDemoBtn" class="ghost-btn ghost-btn--block" type="button">
+                  <svg><use href="#icon-refresh"></use></svg>
+                  <span>Ricarica dati backend</span>
+                </button>
+                <button class="ghost-btn ghost-btn--block" type="button" data-nav-page="laboratori">
+                  <svg><use href="#icon-lab"></use></svg>
+                  <span>Apri pagina laboratori</span>
+                </button>
+                <button class="ghost-btn ghost-btn--block" type="button" data-nav-page="dashboard">
+                  <svg><use href="#icon-dashboard"></use></svg>
+                  <span>Torna alla dashboard</span>
+                </button>
+              </div>
+              <div class="settings-note">
+                Il file di configurazione del database viene salvato localmente dall'app Electron nella cartella utente.
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="settingsAuthModal" hidden>
+      <div class="modal panel" role="dialog" aria-modal="true" aria-labelledby="settingsAuthModalTitle">
+        <div class="modal__header">
+          <div>
+            <p class="eyebrow">Accesso protetto</p>
+            <h3 id="settingsAuthModalTitle">Autenticazione impostazioni</h3>
+          </div>
+          <button class="icon-btn" id="closeSettingsModalBtn" type="button" aria-label="Chiudi finestra">
+            <svg><use href="#icon-x"></use></svg>
+          </button>
+        </div>
+
+        <form id="settingsAuthForm" class="modal__form">
+          <div class="field-grid">
+            <label class="field">
+              <span>Nome</span>
+              <input id="settingsNome" type="text" autocomplete="off" placeholder="Inserisci nome" />
+            </label>
+            <label class="field">
+              <span>Cognome</span>
+              <input id="settingsCognome" type="text" autocomplete="off" placeholder="Inserisci cognome" />
+            </label>
+            <label class="field field--full">
+              <span>Password</span>
+              <input id="settingsPassword" type="password" autocomplete="off" placeholder="Inserisci password" />
+            </label>
+          </div>
+
+          <p class="helper-text">Se attiva la protezione, le credenziali vengono verificate sugli utenti autorizzati presenti nel database.</p>
+          <p class="form-error" id="settingsAuthError" aria-live="polite"></p>
+
+          <div class="modal__actions">
+            <button class="ghost-btn" id="cancelSettingsModalBtn" type="button">Annulla</button>
+            <button class="primary-btn" type="submit">
+              <svg><use href="#icon-check"></use></svg>
+              <span>Accedi alle impostazioni</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="shutdownModal" hidden>
+      <div class="modal panel" role="dialog" aria-modal="true" aria-labelledby="shutdownModalTitle">
+        <div class="modal__header">
+          <div>
+            <p class="eyebrow">Conferma operazione</p>
+            <h3 id="shutdownModalTitle">Spegnimento laboratorio</h3>
+          </div>
+          <button class="icon-btn" id="closeModalBtn" type="button" aria-label="Chiudi finestra">
+            <svg><use href="#icon-x"></use></svg>
+          </button>
+        </div>
+
+        <form id="shutdownForm" class="modal__form">
+          <input type="hidden" id="shutdownLabId" />
+
+          <div class="field-grid">
+            <label class="field">
+              <span>Nome</span>
+              <input id="operatorNome" type="text" autocomplete="off" placeholder="Inserisci nome" />
+            </label>
+            <label class="field">
+              <span>Cognome</span>
+              <input id="operatorCognome" type="text" autocomplete="off" placeholder="Inserisci cognome" />
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Password</span>
+            <input id="operatorPassword" type="password" autocomplete="off" placeholder="Inserisci password" />
+          </label>
+
+          <label class="field">
+            <span>Motivazione spegnimento</span>
+            <textarea id="shutdownReason" rows="4" placeholder="Indica il motivo dello spegnimento"></textarea>
+          </label>
+
+          <div class="helper-text">
+            In modalità demo usa credenziali: nome <strong>q</strong>, cognome <strong>q</strong>, password <strong>q</strong>. Con database attivo vengono usati gli utenti reali della tabella <strong>Users</strong>.
+          </div>
+          <div class="form-error" id="shutdownError"></div>
+
+          <div class="modal__actions">
+            <button class="ghost-btn" id="cancelModalBtn" type="button">
+              <svg><use href="#icon-x"></use></svg>
+              <span>Annulla</span>
+            </button>
+            <button class="primary-btn" type="submit">
+              <svg><use href="#icon-power"></use></svg>
+              <span>Conferma spegnimento</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast-stack" id="toastStack"></div>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>
