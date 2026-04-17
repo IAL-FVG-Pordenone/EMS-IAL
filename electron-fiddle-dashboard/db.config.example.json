@@ -1,9 +1,9 @@
 {
-  "server": "localhost",
+  "server": "",
   "port": 1433,
   "database": "EMS-IAL",
-  "user": "sa",
-  "password": "Password123",
+  "user": "",
+  "password": "",
   "instanceName": "",
   "encrypt": false,
   "trustServerCertificate": true,

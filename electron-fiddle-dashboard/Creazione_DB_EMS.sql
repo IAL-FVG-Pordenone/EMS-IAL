@@ -61,10 +61,10 @@ GO
 -- 7. Inserimento Utenti autorizzati
 INSERT INTO Users (nome, cognome, [user], password, autorizzato)
 VALUES 
-('Mario', 'Bortolani', 'bortolanim', 'Pass-2026', 'S'),
-('Fabio', 'Francescato', 'francescatof', 'Pass-2026', 'S'),
-('Miriana', 'De Renzi', 'derenzim', 'Pass-2026', 'S'),
-('Jody', 'Stabarin', 'stabarins', 'Pass-2026', 'S');
+('Mario', 'Bortolani', 'bortolanim', '', 'S'),
+('Fabio', 'Francescato', 'francescatof', '', 'S'),
+('Miriana', 'De Renzi', 'derenzim', '', 'S'),
+('Jody', 'Stabarin', 'stabarins', '', 'S');
 GO
 
 -- 8. Inserimento dei Laboratori

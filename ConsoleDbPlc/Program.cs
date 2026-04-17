@@ -11,12 +11,12 @@ namespace ConsoleDbPlc
     {
         private static Plc _plcClient;
 
-        private const string PLCAddress = "10.49.137.41";
+        private const string PLCAddress = "";
         private const short Rack = 0;
         private const short Slot = 1;
 
         private const string ConnectionString =
-            "Server=10.50.32.116,3306;Database=EMS-IAL;User Id=ems-ial;Password=ems-ial;Encrypt=True;TrustServerCertificate=True;";
+            "";
 
         static async Task Main(string[] args)
         {
